@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -174,9 +175,15 @@ a {
 
 .hamburger {
   display: none;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   border: 0;
+  border-radius: 10px;
   background: transparent;
   cursor: pointer;
 }
@@ -187,6 +194,19 @@ a {
   height: 2px;
   border-radius: 2px;
   background: var(--blue-900);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .hero {
@@ -241,6 +261,8 @@ a {
   right: 0;
   bottom: 70px;
   left: 0;
+  width: 100%;
+  max-width: 100%;
   opacity: 0.12;
   pointer-events: none;
 }
@@ -1242,9 +1264,9 @@ a {
 
   .hw1 {
     top: -120px;
-    right: 0;
-    width: 260px;
-    height: 260px;
+    right: 18px;
+    width: 220px;
+    height: 220px;
   }
 
   .hw2 {
@@ -1256,6 +1278,10 @@ a {
 
   .hw3 {
     display: none;
+  }
+
+  .hero-wave {
+    animation: none;
   }
 
   .hero-content {
@@ -1333,6 +1359,7 @@ a {
   .hero-visual {
     width: min(100%, 430px);
     margin: 0 auto;
+    animation-name: fadeUp;
   }
 
   .hero-photo-main {
@@ -1386,6 +1413,40 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .about-grid,
+  .appt-grid,
+  .contact-grid,
+  .about-img-wrap,
+  .about-text,
+  .appt-info,
+  .appt-form,
+  .contact-map,
+  .contact-details {
+    min-width: 0;
+  }
+
+  .about-img-main {
+    width: 100%;
+    aspect-ratio: 4 / 4.5;
+    border-radius: 16px;
+  }
+
+  .about-img-badge {
+    right: 10px;
+    bottom: 10px;
+    max-width: calc(100% - 20px);
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .about-img-badge .big {
+    font-size: 30px;
+  }
+
+  .about-img-accent {
+    display: none;
+  }
+
   .gallery-head {
     text-align: left;
   }
@@ -1421,10 +1482,21 @@ a {
   }
 
   .floating-wa {
-    right: 16px;
-    bottom: 16px;
-    width: 54px;
-    height: 54px;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.34);
+  }
+
+  .floating-wa svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(28px);
   }
 
   .timing-row,
